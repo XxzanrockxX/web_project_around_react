@@ -3,8 +3,8 @@ function Card() {
     <li className="card">
       <img
         className="card__image"
-        src=""
-        alt=""
+        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800"
+        alt="Montañas"
       />
 
       <button
@@ -14,7 +14,7 @@ function Card() {
       ></button>
 
       <div className="card__description">
-        <h2 className="card__title"></h2>
+        <h2 className="card__title">Montañas</h2>
 
         <button
           className="card__like-button"

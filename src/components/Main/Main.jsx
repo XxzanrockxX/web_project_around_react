@@ -1,4 +1,5 @@
 import avatar from "../../images/avatar.jpg";
+import Card from "../Card/Card";
 
 function Main() {
   return (
@@ -35,6 +36,11 @@ function Main() {
           type="button"
           aria-label="Agregar tarjeta"
         ></button>
+      </section>
+      <section className="cards page__section">
+        <ul className="cards__list">
+          <Card />
+        </ul>
       </section>
     </main>
   );
