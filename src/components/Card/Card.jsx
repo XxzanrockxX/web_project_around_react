@@ -1,10 +1,12 @@
-function Card() {
+function Card(props) {
+  const { name, link, isLiked } = props.card;
+
   return (
     <li className="card">
       <img
         className="card__image"
-        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800"
-        alt="Montañas"
+        src={link}
+        alt={name}
       />
 
       <button
@@ -14,10 +16,14 @@ function Card() {
       ></button>
 
       <div className="card__description">
-        <h2 className="card__title">Montañas</h2>
+        <h2 className="card__title">
+          {name}
+        </h2>
 
         <button
-          className="card__like-button"
+          className={`card__like-button ${
+            isLiked ? "card__like-button_active" : ""
+          }`}
           type="button"
           aria-label="Botón Me gusta"
         ></button>
