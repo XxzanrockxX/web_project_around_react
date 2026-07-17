@@ -1,5 +1,6 @@
 function Card(props) {
-  const { name, link, isLiked } = props.card;
+  const { name, link } = props.card;
+  const { onImageClick } = props;
 
   return (
     <li className="card">
@@ -7,6 +8,7 @@ function Card(props) {
         className="card__image"
         src={link}
         alt={name}
+        onClick={onImageClick}
       />
 
       <button
@@ -21,9 +23,7 @@ function Card(props) {
         </h2>
 
         <button
-          className={`card__like-button ${
-            isLiked ? "card__like-button_active" : ""
-          }`}
+          className="card__like-button"
           type="button"
           aria-label="Botón Me gusta"
         ></button>

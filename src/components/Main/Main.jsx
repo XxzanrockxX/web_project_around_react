@@ -5,7 +5,7 @@ import Popup from "./components/Popup/Popup";
 import EditProfile from "./components/EditProfile/EditProfile";
 import NewCard from "./components/NewCard/NewCard";
 import EditAvatar from "./components/EditAvatar/EditAvatar";
-
+import ImagePopup from "./components/ImagePopup/ImagePopup";
 
 const cards = [
   {
@@ -21,7 +21,6 @@ const cards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
   },
 ];
-
 
 function Main() {
   const [popup, setPopup] = useState(null);
@@ -41,22 +40,21 @@ function Main() {
     children: <EditAvatar />,
   };
 
+  const imagePopup = (card) => ({
+    children: <ImagePopup card={card} />,
+  });
 
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
 
-
   function handleClosePopup() {
     setPopup(null);
   }
 
-
   return (
     <main className="content">
-
       <section className="profile page__section">
-
         <div className="profile__image-container">
           <img
             className="profile__image"
@@ -72,13 +70,10 @@ function Main() {
           ></button>
         </div>
 
-
         <div className="profile__info">
-
           <h1 className="profile__title">
             Jacques Cousteau
           </h1>
-
 
           <button
             className="profile__edit-button"
@@ -87,13 +82,10 @@ function Main() {
             onClick={() => handleOpenPopup(editProfilePopup)}
           ></button>
 
-
           <p className="profile__description">
             Explorador
           </p>
-
         </div>
-
 
         <button
           className="profile__add-button"
@@ -101,25 +93,19 @@ function Main() {
           aria-label="Agregar tarjeta"
           onClick={() => handleOpenPopup(newCardPopup)}
         ></button>
-
       </section>
 
-
       <section className="cards page__section">
-
         <ul className="cards__list">
-
           {cards.map((card) => (
             <Card
               key={card._id}
               card={card}
+              onImageClick={() => handleOpenPopup(imagePopup(card))}
             />
           ))}
-
         </ul>
-
       </section>
-
 
       {popup && (
         <Popup
@@ -129,10 +115,8 @@ function Main() {
           {popup.children}
         </Popup>
       )}
-
     </main>
   );
 }
-
 
 export default Main;

@@ -3,7 +3,11 @@ export default function Popup(props) {
 
   return (
     <div className="popup popup_is-opened">
-      <div className="popup__content">
+      <div
+        className={`popup__content ${
+          !title ? "popup__content_content_image" : ""
+        }`}
+      >
         <button
           className="popup__close"
           type="button"
@@ -11,9 +15,11 @@ export default function Popup(props) {
           onClick={onClose}
         ></button>
 
-        <h3 className="popup__title">
-          {title}
-        </h3>
+        {title && (
+          <h3 className="popup__title">
+            {title}
+          </h3>
+        )}
 
         {children}
       </div>
