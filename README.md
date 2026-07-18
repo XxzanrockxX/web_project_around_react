@@ -1,16 +1,66 @@
-# React + Vite
+# Around The U.S.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About the Project
 
-Currently, two official plugins are available:
+Around The U.S. is a React migration of an existing HTML, CSS, and Vanilla JavaScript travel gallery application. This version preserves the original user interface and design while restructuring the code into reusable React components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The migration was completed as part of the TripleTen Full Stack Web Development program and emphasizes component architecture, state-driven dialogs, and dynamic rendering.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Reusable React components for the page layout and UI sections
+- Functional components using modern React patterns
+- Dynamic card rendering with `props` and `Array.prototype.map`
+- Popup dialogs managed with `useState`
+- Shared `Popup` component used across multiple dialog windows
+- Responsive layout and scalable component organization
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- React
+- Vite
+- JSX
+- Functional Components
+- Props
+- useState
+- Responsive Design
+
+## Project Structure
+
+The project is organized into clear source folders for components, styles, and utilities.
+
+- `src/components` — reusable UI components such as `Header`, `Footer`, and main page sections
+- `src/components/Main/components` — dialog and popup components for editing and viewing content
+- `src/blocks` — CSS files for individual page sections and layout styles
+- `src/images` — static image assets used in the interface
+- `src/utils` — shared utilities and helper logic
+
+## Future Improvements
+
+Future sprints will expand the application with data persistence and interactive features, including:
+
+- API integration for loading and saving data
+- User profile updates
+- Avatar updates
+- Creating and deleting cards
+- Like functionality
+- Form validation
+- Backend communication for persistent state
+
+## Getting Started
+
+Install dependencies and run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Build the production version:
+
+```bash
+npm run build
+```
