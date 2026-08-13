@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect, useContext} from "react";
 import avatar from "../../images/avatar.jpg";
 import Card from "../Card/Card";
 import Popup from "./components/Popup/Popup";
@@ -6,24 +6,24 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import NewCard from "./components/NewCard/NewCard";
 import EditAvatar from "./components/EditAvatar/EditAvatar";
 import ImagePopup from "./components/ImagePopup/ImagePopup";
+import api from "../../utils/api";
+import CurrentUserContext from "../Contex/CurrentUserContext.js";
 
-const cards = [
-  {
-    isLiked: false,
-    _id: "1",
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    isLiked: false,
-    _id: "2",
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-];
 
 function Main() {
   const [popup, setPopup] = useState(null);
+  const [cards, setCards] = useState([]);
+  const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+  api.getCardList()
+    .then((data) => {
+      setCards(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}, []);
 
   const editProfilePopup = {
     title: "Editar perfil",
