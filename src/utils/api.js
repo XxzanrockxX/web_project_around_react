@@ -44,6 +44,12 @@ removeCard(cardID) {
     headers: this._headers,
   }).then(this._handleServerResponse);
 }
+changeLikeCardStatus(cardId, isLiked) {
+  return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    method: isLiked ? "PUT" : "DELETE",
+    headers: this._headers,
+  }).then(this._handleServerResponse);
+}
 setUserAvatar({ avatar }) {
   return fetch(`${this._baseUrl}/users/me/avatar`, {
     method: 'PATCH',
@@ -54,6 +60,9 @@ setUserAvatar({ avatar }) {
   }).then(this._handleServerResponse);
 }
 }
+
+console.log("MÉTODO LIKE:", Api.prototype.changeLikeCardStatus);
+
 const api = new Api({
   baseUrl: 'https://around-api.es.tripleten-services.com/v1',
   headers: {

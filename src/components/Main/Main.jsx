@@ -1,51 +1,16 @@
-import { useState , useEffect, useContext} from "react";
+import { useContext} from "react";
 import Card from "../Card/Card";
 import Popup from "./components/Popup/Popup";
 import EditProfile from "./components/EditProfile/EditProfile";
 import NewCard from "./components/NewCard/NewCard";
 import EditAvatar from "./components/EditAvatar/EditAvatar";
 import ImagePopup from "./components/ImagePopup/ImagePopup";
-import api from "../../utils/api";
-import CurrentUserContext from "../Contex/CurrentUserContext.js";
+import CurrentUserContext from "../../context/CurrentUserContext.js";
 
 
-function Main({ popup, onOpenPopup, onClosePopup }) {
-  const [cards, setCards] = useState([]);
+function Main({ popup, onOpenPopup, onClosePopup, cards, onCardLike, onCardDelete, onAddPlaceSubmit }) {
   const {currentUser} = useContext(CurrentUserContext);
 
-  useEffect(() => {
-  api.getCardList()
-    .then((data) => {
-      setCards(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}, []);
-
-async function handleCardLike(card) {
-  const isLiked = card.isLiked;
-
-  await api.changeLikeCardStatus(card._id, !isLiked)
-    .then((newCard) => {
-      setCards((state) =>
-        state.map((currentCard) =>
-          currentCard._id === card._id ? newCard : currentCard
-        )
-      );
-    })
-    .catch((error) => console.error(error));
-}
-
-  function handleCardDelete(card) {
-  api.removeCard(card._id)
-    .then(() => {
-      setCards((state) =>
-        state.filter((currentCard) => currentCard._id !== card._id)
-      );
-    })
-    .catch((error) => console.error(error));
-}
   
   const editProfilePopup = {
     title: "Editar perfil",
@@ -54,7 +19,7 @@ async function handleCardLike(card) {
 
   const newCardPopup = {
     title: "Nuevo lugar",
-    children: <NewCard />,
+    children: <NewCard onAddPlaceSubmit={onAddPlaceSubmit} />,
   };
 
   const editAvatarPopup = {
@@ -116,8 +81,8 @@ async function handleCardLike(card) {
               key={card._id}
               card={card}
               onImageClick={() => onOpenPopup(imagePopup(card))}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
             />
           ))}
         </ul>
