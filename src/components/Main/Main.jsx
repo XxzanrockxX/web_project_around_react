@@ -5,7 +5,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import NewCard from "./components/NewCard/NewCard";
 import EditAvatar from "./components/EditAvatar/EditAvatar";
 import ImagePopup from "./components/ImagePopup/ImagePopup";
-import CurrentUserContext from "../../context/CurrentUserContext.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 
 function Main({ popup, onOpenPopup, onClosePopup, cards, onCardLike, onCardDelete, onAddPlaceSubmit }) {
